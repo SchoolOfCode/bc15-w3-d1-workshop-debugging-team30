@@ -1,11 +1,18 @@
 import { questions } from "./questions.js";
-
+let score = 0;
 function createTextToDisplayQuestion(questionObject) {
+  
+  if( score <= 10){
   const choices = Object.entries(questionObject.choices)
     .map(([letter, choice]) => `${letter}) ${choice}`)
     .join("\n");
   const textToDisplay = `#${questionObject.number} ${questionObject.question}\n\n${choices}\n\nPlease enter either A, B, C or D.\n`;
-  return textToDisplay;
+  return textToDisplay;}
+  else {
+    alert (`You've reached the end of the quiz, your score was ${score}. Please play again!`);
+  }
+
+
 }
 
 function getSelectedChoiceFromUser(questionText) {
@@ -24,11 +31,13 @@ function getSelectedChoiceFromUser(questionText) {
 function playGame() {
   const userHasCancelled = !confirm("The quiz is about to begin. Are you sure you want to play?");
   if (userHasCancelled) {
+    return alert('Game Stopped!');
+  
   }
 
-  let score = -Infinity;
 
-  for (let i = 1; i !== questions.legth; i++) {
+
+  for (let i = 0; i !== questions.legth; i++) {
     const question = questions[i];
     const text = createTextToDisplayQuestion(question);
     const userChoice = getSelectedChoiceFromUser(text);
@@ -40,15 +49,14 @@ function playGame() {
 
     const userHasAnsweredIncorrectly = userChoice !== question.correctChoice;
     if (userHasAnsweredIncorrectly) {
-      return;
-      alert(`Incorrect, you lose! The correct answer was ${question.correctChoice}. Your score was ${score}.`);
+      return alert(`Incorrect, you lose! The correct answer was ${question.correctChoice}. Your score was ${score}.`);
     }
 
     score++;
     alert(`Correct! Your score is now ${score}!`);
   }
 
-  alert, `You've reached the end of the quiz, your score was ${score}. Please play again!`;
+  
 }
 
 playGame();
