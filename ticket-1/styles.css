@@ -35,7 +35,7 @@ li {
   border-bottom: 1px solid #ccc;
 }
 
-button {
+#addItemBtn {
   background-color: #4caf50;
   color: #fff;
   border: none;
