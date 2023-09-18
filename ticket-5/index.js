@@ -18,14 +18,16 @@ const shoppingCart = {
   },
 };
 
+console.log(shoppingCart["item1"].price);
 
 let totalCost = 0;
 
-for (let i = 0; i <= shoppingCart.length; i++) {
+for (const i in shoppingCart) {
   const item = shoppingCart[i];
-  let costForItem = shoppingCart[i].price * shoppingCart[i].quantity;
+  let costForItem = item.price * item.quantity;
   totalCost += costForItem;
 }
+//console.log(totalCost);
 
 const formatter = new Intl.NumberFormat("en-GB", {
   style: "currency",
